@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 
 const About = () => {
-    const [activeTab, setActiveTab] = useState('vision');
     const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
     const milestones = [

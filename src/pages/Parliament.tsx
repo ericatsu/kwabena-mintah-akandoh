@@ -1,12 +1,10 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, MessageCircle, Users, TrendingUp, Award, Calendar, Clock } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const Parliament = () => {
-    const [selectedYear, setSelectedYear] = useState('2023');
-
     const activities = [
         {
             title: 'Bills Sponsored',

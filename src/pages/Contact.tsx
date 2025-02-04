@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { MapPin, Phone, Mail, Clock, MessageSquare, Building, ChevronRight } from 'lucide-react';
+import { Phone, Mail, Building, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Contact = () => {

@@ -2,11 +2,9 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
     Heart,
-    BookOpen,
     Theater,
     School,
     Users,
-    Building,
     Leaf,
     Search
 } from 'lucide-react'

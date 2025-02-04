@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Video, Image as ImageIcon, Newspaper, Play, Calendar, Share2, Download } from 'lucide-react';
+import { Play, Calendar, Share2, Download } from 'lucide-react';
 
 const Media = () => {
-    const [selectedYear, setSelectedYear] = useState('2024');
-
     const newsItems = [
         {
             title: "Healthcare Reform Bill Presentation",
