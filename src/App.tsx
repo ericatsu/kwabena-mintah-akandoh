@@ -7,8 +7,8 @@ import Parliament from './pages/Parliament'
 import './index.css'
 import Constituency from './pages/Constituency'
 import Initiatives from './pages/Initiatives'
-// import Media from './pages/Media'
-// import Contact from './pages/Contact'
+import Media from './pages/Media'
+import Contact from './pages/Contact'
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
             <Route path="/parliament" element={<Parliament />} />
             <Route path="/constituency" element={<Constituency />} />
             <Route path="/initiatives" element={<Initiatives />} />
-            {/*<Route path="/media" element={<Media />} />
-            <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/media" element={<Media />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </Layout>
       </AnimatePresence>

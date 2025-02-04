@@ -1,24 +1,26 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'srcbook-error-reporter',
+      name: "srcbook-error-reporter",
 
       // ref: https://vite.dev/guide/api-plugin.html#transformindexhtml
       transformIndexHtml(html) {
-        if (process.env.NODE_ENV !== 'development') {
+        if (process.env.NODE_ENV !== "development") {
           return html;
         }
 
-        return [{
-          tag: 'script',
-          attrs: { type: 'module' },
-          injectTo: 'head',
-          children: `
+        return [
+          {
+            tag: "script",
+            attrs: { type: "module" },
+            injectTo: "head",
+            children: `
             // Report any logs, errors, etc to the parent srcbook app context to include in
             // the bottom panel.
             for (const method of ['log', 'debug', 'info', 'error', 'warn']) {
@@ -62,11 +64,12 @@ export default defineConfig({
             window.addEventListener('popstate', notifyParent);
             window.addEventListener('hashchange', notifyParent);
           `,
-        }];
+          },
+        ];
       },
 
       transform(src: string, id: string) {
-        if (id === '/app/src/main.tsx') {
+        if (id === "/app/src/main.tsx") {
           return `
             ${src}
             if (process.env.NODE_ENV === 'development') {
@@ -95,4 +98,9 @@ export default defineConfig({
       },
     },
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
