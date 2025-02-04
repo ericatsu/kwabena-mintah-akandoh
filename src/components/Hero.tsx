@@ -12,7 +12,7 @@ const Hero = () => {
             className="md:w-1/2"
           >
             <img
-              src="https://example.com/placeholder-image.jpg" // Replace with actual image
+              src="https://example.com/placeholder-image.jpg" 
               alt="Hon. Kwabena Mintah Akandoh"
               className="rounded-lg shadow-xl w-full max-w-md mx-auto"
             />
