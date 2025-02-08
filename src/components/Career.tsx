@@ -5,8 +5,8 @@ import { Calendar, Briefcase, TrendingUp } from 'lucide-react';
 const Career = () => {
   const milestones = [
     {
-      year: "2025",
-      title: "Minister-designate for Health",
+      year: "2025-Present",
+      title: "Minister for Health",
       description: "Nominated to serve as Minister for Health in Ghana's government, leading national healthcare policy and implementation.",
       icon: Briefcase
     },

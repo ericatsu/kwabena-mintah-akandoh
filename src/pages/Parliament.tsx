@@ -55,7 +55,7 @@ const Parliament = () => {
                         </h1>
                         <p className="text-xl text-emerald-100 max-w-3xl">
                             Hon. Kwabena Mintah Akandoh, MP for Juaboso Constituency
-                            Minister-designate for Health
+                            Minister for Health
                         </p>
                         <div className="flex gap-4">
                             <div className="flex items-center gap-2 bg-emerald-800/50 rounded-full px-4 py-2">

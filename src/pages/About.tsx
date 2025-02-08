@@ -29,7 +29,7 @@ const About = () => {
         },
         {
             year: '2024',
-            title: 'Minister-Designate',
+            title: 'Minister',
             description: 'Nominated as Minister for Health',
             icon: Award
         }
@@ -181,7 +181,7 @@ const About = () => {
                                     his constituents and all Ghanaians.
                                 </p>
                                 <p>
-                                    In his role as Minister-designate for Health, he brings valuable
+                                    In his role as Minister for Health, he brings valuable
                                     expertise and a vision for transforming Ghana's healthcare system
                                     through innovative policies and strategic implementations.
                                 </p>

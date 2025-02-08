@@ -12,25 +12,42 @@ import Contact from './pages/Contact'
 import { Work } from './pages/parliament/Work'
 import { Speeches } from './pages/parliament/Speeches'
 import { Bills } from './pages/parliament/Bills'
+import { SignIn } from './components/auth/SignIn'
+import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { AdminLayout } from './components/dashboard/AdminLayout'
+import { Dashboard } from './pages/admin/Dashboard'
 
 function App() {
   return (
     <Router>
       <AnimatePresence mode="wait">
-        <Layout>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/parliament" element={<Parliament />} />
-            <Route path="/parliament/work" element={<Work />} />
-            <Route path="/parliament/speeches" element={<Speeches />} />
-            <Route path="/parliament/bills" element={<Bills />} />
-            <Route path="/constituency" element={<Constituency />} />
-            <Route path="/initiatives" element={<Initiatives />} />
-            <Route path="/media" element={<Media />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/about" element={<Layout><About /></Layout>} />
+            <Route path="/parliament" element={<Layout><Parliament /></Layout>} />
+            <Route path="/parliament/work" element={<Layout><Work /></Layout>} />
+            <Route path="/parliament/speeches" element={<Layout><Speeches /></Layout>} />
+            <Route path="/parliament/bills" element={<Layout><Bills /></Layout>} />
+            <Route path="/constituency" element={<Layout><Constituency /></Layout>} />
+            <Route path="/initiatives" element={<Layout><Initiatives /></Layout>} />
+            <Route path="/media" element={<Layout><Media /></Layout>} />
+            <Route path="/contact" element={<Layout><Contact /></Layout>} />
+
+            <Route path="/admin" element={<SignIn />} />
+            <Route
+              path="/admin/*"
+              element={
+                <ProtectedRoute>
+                  <AdminLayout>
+                    <Routes>
+                      <Route path="/dashboard" element={<Dashboard />} />
+                      {/* Add more admin routes as needed */}
+                    </Routes>
+                  </AdminLayout>
+                </ProtectedRoute>
+              }
+            />
           </Routes>
-        </Layout>
       </AnimatePresence>
     </Router>
   )

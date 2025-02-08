@@ -131,7 +131,7 @@ const Footer = () => {
                             <Heart className="w-4 h-4 text-emerald-500" />
                         </h4>
                         <p className="text-gray-400 mb-6 leading-relaxed">
-                            Member of Parliament for Juaboso Constituency and Minister-designate
+                            Member of Parliament for Juaboso Constituency and Minister
                             for Health, dedicated to serving the people and advancing healthcare
                             in Ghana through innovative policies and community engagement.
                         </p>

@@ -90,7 +90,7 @@ const Header = () => {
                   <div className="flex items-center space-x-2 text-sm text-emerald-700">
                     <span>MP, Juaboso Constituency</span>
                     <span className="h-1 w-1 rounded-full bg-emerald-700" />
-                    <span>Minister-designate for Health</span>
+                    <span>Minister for Health</span>
                   </div>
                 </div>
               </motion.div>

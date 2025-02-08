@@ -17,7 +17,7 @@ const Media = () => {
             date: "February 1, 2024",
             source: "Ghana Health News",
             image: "https://cdn.ghanaweb.com/imagelib/pics/736/73681680.295.jpg",
-            excerpt: "Minister-designate outlines plans for medical infrastructure development..."
+            excerpt: "Minister outlines plans for medical infrastructure development..."
         }
     ];
 

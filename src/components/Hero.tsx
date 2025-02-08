@@ -20,7 +20,7 @@ const Hero = () => {
       value: '120K+'
     }
   ];
-  
+
   return (
     <section className="relative pt-24 pb-16 overflow-hidden">
       {/* Decorative background elements */}
@@ -88,7 +88,7 @@ const Hero = () => {
                       Member of Parliament
                     </h2>
                     <h3 className="text-xl text-emerald-600">
-                      Minister-designate for Health
+                      Minister for Health
                     </h3>
                   </div>
                 </motion.div>
