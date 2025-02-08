@@ -16,6 +16,7 @@ import { SignIn } from './components/auth/SignIn'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import { AdminLayout } from './components/dashboard/AdminLayout'
 import { Dashboard } from './pages/admin/Dashboard'
+import { AboutAdmin } from './pages/admin/AboutAdmin'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                   <AdminLayout>
                     <Routes>
                       <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/about" element={<AboutAdmin />} />
                       {/* Add more admin routes as needed */}
                     </Routes>
                   </AdminLayout>

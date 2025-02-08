@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import {
     LayoutDashboard,
     FileText,
@@ -7,8 +6,10 @@ import {
     Users,
     Image,
     Settings,
-    LogOut
-} from 'lucide-react';
+    LogOut,
+    Building,
+    PersonStanding} from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
@@ -21,16 +22,17 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
     const menuItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
-        { icon: FileText, label: 'Pages', path: '/admin/pages' },
-        { icon: MessageCircle, label: 'Speeches', path: '/admin/speeches' },
+        { icon: PersonStanding, label: 'About', path: '/admin/about' },
+        { icon: Building, label: 'Constituency', path: '/admin/constituency' },
         { icon: Users, label: 'Initiatives', path: '/admin/initiatives' },
+        { icon: FileText, label: 'Bills', path: '/admin/bills' },
+        { icon: MessageCircle, label: 'Speeches', path: '/admin/speeches' },
         { icon: Image, label: 'Media', path: '/admin/media' },
         { icon: Settings, label: 'Settings', path: '/admin/settings' },
     ];
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Sidebar */}
             <div className="fixed inset-y-0 left-0 w-64 bg-white border-r">
                 <div className="p-6">
                     <h2 className="text-2xl font-bold text-emerald-600">Admin Panel</h2>
@@ -57,8 +59,6 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                     </button>
                 </nav>
             </div>
-
-            {/* Main Content */}
             <div className="ml-64 p-8">
                 {children}
             </div>

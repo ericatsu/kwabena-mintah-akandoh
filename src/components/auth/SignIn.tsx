@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Lock } from 'lucide-react';
 
 export const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -25,8 +24,12 @@ export const SignIn = () => {
             <div className="w-full max-w-md p-4">
                 <Card>
                     <CardHeader>
-                        <div className="text-center">
-                            <Lock className="mx-auto h-12 w-12 text-emerald-600" />
+                        <div className="">
+                            <img
+                                src="/logo.png"
+                                alt="Logo"
+                                className="max-auto h-12 w-12 object-cover"
+                            />
                             <h2 className="mt-4 text-2xl font-bold">Admin Sign In</h2>
                             <p className="mt-2 text-gray-600">Sign in to access the admin dashboard</p>
                         </div>
