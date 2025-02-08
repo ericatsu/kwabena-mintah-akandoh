@@ -9,6 +9,9 @@ import Constituency from './pages/Constituency'
 import Initiatives from './pages/Initiatives'
 import Media from './pages/Media'
 import Contact from './pages/Contact'
+import { Work } from './pages/parliament/Work'
+import { Speeches } from './pages/parliament/Speeches'
+import { Bills } from './pages/parliament/Bills'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/parliament" element={<Parliament />} />
+            <Route path="/parliament/work" element={<Work />} />
+            <Route path="/parliament/speeches" element={<Speeches />} />
+            <Route path="/parliament/bills" element={<Bills />} />
             <Route path="/constituency" element={<Constituency />} />
             <Route path="/initiatives" element={<Initiatives />} />
             <Route path="/media" element={<Media />} />

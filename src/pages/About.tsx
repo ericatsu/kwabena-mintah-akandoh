@@ -156,7 +156,7 @@ const About = () => {
                         >
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-2xl transform rotate-3" />
                             <img
-                                src="/kma.png"
+                                src="/kma.jpg"
                                 alt="Hon. K. M. Akandoh"
                                 className="relative rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500"
                             />

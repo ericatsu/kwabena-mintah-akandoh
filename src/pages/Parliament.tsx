@@ -1,4 +1,3 @@
-//import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, MessageCircle, Users, TrendingUp, Award, Calendar, Clock } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';

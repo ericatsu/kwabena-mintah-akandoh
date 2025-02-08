@@ -42,7 +42,7 @@ const Hero = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
                 <img
-                  src="/kma.png"
+                  src="/kma.jpg"
                   alt="Hon. Kwabena Mintah Akandoh"
                   className="w-full aspect-[3/4] object-cover"
                 />
