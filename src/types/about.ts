@@ -1,31 +1,53 @@
-export interface IMilestone {
-  year: string;
+import { LucideIcon } from "lucide-react";
+
+interface IBaseItem {
   title: string;
   description: string;
 }
 
-export interface ICoreValue {
-  title: string;
-  description: string;
+export interface IMilestoneForm extends IBaseItem {
+  date: Date;
+  icon: string;
 }
 
-export interface IAchievement {
-  title: string;
-  description: string;
+export interface ICoreValueForm extends IBaseItem {
+  icon: string;
 }
 
-export interface IFAQ {
+export interface IAchievementForm extends IBaseItem {
+  stats: number;
+}
+
+export interface IFAQForm {
   question: string;
   answer: string;
 }
 
-export interface IAboutDoc {
-  _id: string;
-  milestones: IMilestone[];
-  coreValues: ICoreValue[];
-  achievements: IAchievement[];
-  faqs: IFAQ[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+// Display interfaces (for frontend)
+export interface IMilestone extends IBaseItem {
+  date: Date;
+  year?: string;
+  icon: LucideIcon | string;
+}
+
+export interface ICoreValue extends IBaseItem {
+  icon: LucideIcon | string;
+}
+
+export interface IAchievement extends IBaseItem {
+  stats: string | number;
+}
+
+export interface IFAQ extends IFAQForm {}
+
+export function isMilestoneForm(item: any): item is IMilestoneForm {
+  return typeof item.icon === "string";
+}
+
+export function isCoreValueForm(item: any): item is ICoreValueForm {
+  return typeof item.icon === "string";
+}
+
+export function isAchievementForm(item: any): item is IAchievementForm {
+  return typeof item.stats === "number";
 }

@@ -4,19 +4,30 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, Plus, Trash2, Save, Edit, X } from 'lucide-react';
+import { Loader2, Plus, Trash2, Save, Edit, X, CalendarIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { IMilestone, ICoreValue, IAchievement, IFAQ } from '@/types/about';
+import { API_BASE_URL } from '@/lib/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { format } from 'date-fns';
 
-const API_BASE_URL = 'https://kma.onrender.com/api';
+type FieldType = 'input' | 'textarea' | 'select';
+
+const ICON_OPTIONS = ['Building', 'Shield', 'Award', 'Globe', 'Heart'] as const;
 
 type SectionItem = IMilestone | ICoreValue | IAchievement | IFAQ;
+
+interface FieldConfig {
+    label: string;
+    type: FieldType;
+}
 
 interface SectionManagerProps<T extends SectionItem> {
     title: string;
     endpoint: string;
     emptyItem: T;
-    fields: Record<string, { label: string; type: 'input' | 'textarea' }>;
+    fields: Record<string, FieldConfig>;
 }
 
 function SectionManager<T extends SectionItem>({
@@ -102,11 +113,85 @@ function SectionManager<T extends SectionItem>({
     };
 
     const handleUpdateField = (field: keyof T, value: string) => {
-        if (editingItem) {
-            setEditingItem({ ...editingItem, [field]: value });
+        if (!editingItem) return;
+
+        let parsedValue: any = value;
+
+        if (field === 'date') {
+            parsedValue = new Date(value);
+        } else if (field === 'stats') {
+            parsedValue = Number(value);
         }
+
+        setEditingItem({ ...editingItem, [field]: parsedValue });
     };
 
+    const renderField = (key: string, config: FieldConfig) => {
+        if (key === 'date' && editingItem) {
+            return (
+                <div className="relative">
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="w-full justify-start text-left font-normal"
+                            >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {(editingItem as any)[key]
+                                    ? format(new Date((editingItem as any)[key]), 'PPP')
+                                    : "Select date"}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                            <Calendar
+                                mode="single"
+                                selected={new Date((editingItem as any)[key])}
+                                onSelect={(date) =>
+                                    handleUpdateField(key as keyof T, date?.toISOString() || '')
+                                }
+                                initialFocus
+                            />
+                        </PopoverContent>
+                    </Popover>
+                </div>
+            );
+        }
+
+        switch (config.type) {
+            case 'textarea':
+                return (
+                    <Textarea
+                        value={(editingItem as any)[key] || ''}
+                        onChange={(e) => handleUpdateField(key as keyof T, e.target.value)}
+                        className="w-full"
+                    />
+                );
+            case 'select':
+                return (
+                    <select
+                        className="border rounded-md p-2 w-full"
+                        value={(editingItem as any)[key] || ''}
+                        onChange={(e) => handleUpdateField(key as keyof T, e.target.value)}
+                    >
+                        <option value="">Select Icon</option>
+                        {ICON_OPTIONS.map((icon) => (
+                            <option key={icon} value={icon}>
+                                {icon}
+                            </option>
+                        ))}
+                    </select>
+                );
+            default:
+                return (
+                    <Input
+                        value={(editingItem as any)[key] || ''}
+                        onChange={(e) => handleUpdateField(key as keyof T, e.target.value)}
+                        className="w-full"
+                    />
+                );
+        }
+    };
+    
     return (
         <Card className="mb-8">
             <CardHeader>
@@ -140,22 +225,12 @@ function SectionManager<T extends SectionItem>({
                         className="mb-6 p-4 border rounded-lg"
                     >
                         <div className="space-y-4">
-                            {Object.entries(fields).map(([key, { label, type }]) => (
+                            {Object.entries(fields).map(([key, config]) => (
                                 <div key={key}>
-                                    <label className="block text-sm font-medium mb-1">{label}</label>
-                                    {type === 'textarea' ? (
-                                        <Textarea
-                                            value={(editingItem as any)[key] || ''}
-                                            onChange={(e) => handleUpdateField(key as keyof T, e.target.value)}
-                                            className="w-full"
-                                        />
-                                    ) : (
-                                        <Input
-                                            value={(editingItem as any)[key] || ''}
-                                            onChange={(e) => handleUpdateField(key as keyof T, e.target.value)}
-                                            className="w-full"
-                                        />
-                                    )}
+                                    <label className="block text-sm font-medium mb-1">
+                                        {config.label}
+                                    </label>
+                                    {renderField(key, config)}
                                 </div>
                             ))}
                             <div className="flex gap-2 justify-end">
@@ -168,7 +243,11 @@ function SectionManager<T extends SectionItem>({
                                     Cancel
                                 </Button>
                                 <Button onClick={handleSave} disabled={loading}>
-                                    {loading ? <Loader2 className="animate-spin mr-2" /> : <Save className="w-4 h-4 mr-2" />}
+                                    {loading ? (
+                                        <Loader2 className="animate-spin mr-2" />
+                                    ) : (
+                                        <Save className="w-4 h-4 mr-2" />
+                                    )}
                                     Save
                                 </Button>
                             </div>
@@ -229,9 +308,10 @@ export const AboutAdmin: React.FC = () => {
             <SectionManager<IMilestone>
                 title="Milestones"
                 endpoint="milestones"
-                emptyItem={{ year: '', title: '', description: '' }}
+                emptyItem={{ date: new Date(), title: '', description: '', icon: '' }}
                 fields={{
-                    year: { label: 'Year', type: 'input' },
+                    date: { label: 'Date', type: 'input' },
+                    icon: { label: 'Icon', type: 'select' },
                     title: { label: 'Title', type: 'input' },
                     description: { label: 'Description', type: 'textarea' }
                 }}
@@ -240,9 +320,10 @@ export const AboutAdmin: React.FC = () => {
             <SectionManager<ICoreValue>
                 title="Core Values"
                 endpoint="core-values"
-                emptyItem={{ title: '', description: '' }}
+                emptyItem={{ title: '', description: '', icon: '' }}
                 fields={{
                     title: { label: 'Title', type: 'input' },
+                    icon: { label: 'Icon', type: 'select' },
                     description: { label: 'Description', type: 'textarea' }
                 }}
             />
@@ -250,9 +331,10 @@ export const AboutAdmin: React.FC = () => {
             <SectionManager<IAchievement>
                 title="Achievements"
                 endpoint="achievements"
-                emptyItem={{ title: '', description: '' }}
+                emptyItem={{ title: '', description: '', stats: 0 }}
                 fields={{
                     title: { label: 'Title', type: 'input' },
+                    stats: { label: 'Stats', type: 'input' },
                     description: { label: 'Description', type: 'textarea' }
                 }}
             />
