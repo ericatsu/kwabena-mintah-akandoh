@@ -1,3 +1,4 @@
+import { IDuration } from "@/types/parliament";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -27,4 +28,8 @@ export function parseDDMMYYYY(value: string): Date | null {
 
   const d = new Date(yyyy, mm - 1, dd);
   return isNaN(d.getTime()) ? null : d;
+}
+
+export function formatDuration(duration: IDuration): string {
+  return `${duration.value} ${duration.unit}`;
 }

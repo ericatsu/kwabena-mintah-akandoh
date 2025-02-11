@@ -23,7 +23,7 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const menuItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
         { icon: PersonStanding, label: 'About', path: '/admin/about' },
-        { icon: Building, label: 'Constituency', path: '/admin/constituency' },
+        { icon: Building, label: 'Activities', path: '/admin/Activities' },
         { icon: Users, label: 'Initiatives', path: '/admin/initiatives' },
         { icon: FileText, label: 'Bills', path: '/admin/bills' },
         { icon: MessageCircle, label: 'Speeches', path: '/admin/speeches' },

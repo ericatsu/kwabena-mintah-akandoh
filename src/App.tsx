@@ -17,6 +17,10 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import { AdminLayout } from './components/dashboard/AdminLayout'
 import { Dashboard } from './pages/admin/Dashboard'
 import { AboutAdmin } from './pages/admin/AboutAdmin'
+import ActivitiesAdmin from './pages/admin/ActivitiesAdmin'
+import BillsAdmin from './pages/admin/BillsAdmin'
+import CommitteesAdmin from './pages/admin/CommitteesAdmin'
+import SpeechesAdmin from './pages/admin/SpeechesAdmin'
 
 function App() {
   return (
@@ -43,6 +47,10 @@ function App() {
                     <Routes>
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/about" element={<AboutAdmin />} />
+                      <Route path="/activities" element={<ActivitiesAdmin />} />
+                      <Route path="/bills" element={<BillsAdmin />} />
+                      <Route path="/speeches" element={<SpeechesAdmin />} />
+                      <Route path="/committees" element={<CommitteesAdmin />} />
                       {/* Add more admin routes as needed */}
                     </Routes>
                   </AdminLayout>
