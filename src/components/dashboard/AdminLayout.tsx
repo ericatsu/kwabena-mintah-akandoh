@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import {
     LayoutDashboard,
-    FileText,
-    MessageCircle,
-    Users,
-    Image,
     Settings,
     LogOut,
-    Building,
-    PersonStanding} from 'lucide-react';
+    PersonStanding,
+    HeartHandshake,
+    Newspaper} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
@@ -23,11 +20,8 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const menuItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
         { icon: PersonStanding, label: 'About', path: '/admin/about' },
-        { icon: Building, label: 'Activities', path: '/admin/Activities' },
-        { icon: Users, label: 'Initiatives', path: '/admin/initiatives' },
-        { icon: FileText, label: 'Bills', path: '/admin/bills' },
-        { icon: MessageCircle, label: 'Speeches', path: '/admin/speeches' },
-        { icon: Image, label: 'Media', path: '/admin/media' },
+        { icon: HeartHandshake, label: 'Ministry', path: '/admin/ministry' },
+        { icon: Newspaper, label: 'Blog', path: '/admin/blog' },
         { icon: Settings, label: 'Settings', path: '/admin/settings' },
     ];
 

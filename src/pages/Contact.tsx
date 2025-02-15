@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Phone, Mail, Building, ChevronRight } from 'lucide-react';
+import { Phone, Mail, Building, ChevronRight, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Contact = () => {
@@ -261,6 +261,50 @@ const Contact = () => {
                             </CardContent>
                         </Card>
                     </motion.div>
+                    <section className="py-20 bg-emerald-900 text-white">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <motion.div
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                className="text-center mb-12"
+                            >
+                                <h2 className="text-3xl font-bold mb-4">Contact the Ministry</h2>
+                                <p className="text-emerald-100">Get in touch with our office for inquiries and assistance</p>
+                            </motion.div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    className="flex items-center justify-center"
+                                >
+                                    <Mail className="w-6 h-6 mr-3" />
+                                    <span>health.ministry@ghana.gov.gh</span>
+                                </motion.div>
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.1 }}
+                                    className="flex items-center justify-center"
+                                >
+                                    <Phone className="w-6 h-6 mr-3" />
+                                    <span>+233 (0) 302 665651</span>
+                                </motion.div>
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2 }}
+                                    className="flex items-center justify-center"
+                                >
+                                    <MapPin className="w-6 h-6 mr-3" />
+                                    <span>Ministry of Health, Accra, Ghana</span>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe, Search } from 'lucide-react';
+import { Menu, X, Globe, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
@@ -12,17 +12,10 @@ const Header = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    {
-      name: 'Parliament', path: '/parliament',
-      subItems: [
-        { name: 'Parliamentary Work', path: '/parliament/work' },
-        { name: 'Speeches', path: '/parliament/speeches' },
-        { name: 'Bills & Motions', path: '/parliament/bills' }
-      ]
-    },
+    { name: 'Parliament', path: '/parliament' },
     { name: 'Constituency', path: '/constituency' },
-    { name: 'Initiatives', path: '/initiatives' },
-    { name: 'Media', path: '/media' },
+    { name: 'Ministry', path: '/ministry' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -109,26 +102,10 @@ const Header = () => {
                     `}
                   >
                     <span>{item.name}</span>
-                    {item.subItems && <ChevronDown size={16} />}
+                   
                   </Link>
 
-                  {item.subItems && (
-                    <div className="absolute top-full left-0 w-48 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
-                      <div className="pt-4">
-                        <div className="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden">
-                          {item.subItems.map((subItem) => (
-                            <Link
-                              key={subItem.path}
-                              to={subItem.path}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700"
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  
 
                   {location.pathname === item.path && (
                     <motion.div
@@ -175,20 +152,6 @@ const Header = () => {
                     >
                       {item.name}
                     </Link>
-                    {item.subItems && (
-                      <div className="bg-gray-50 pl-8">
-                        {item.subItems.map((subItem) => (
-                          <Link
-                            key={subItem.path}
-                            to={subItem.path}
-                            className="block py-2 px-4 text-sm text-gray-600 hover:text-emerald-700"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 ))}
 

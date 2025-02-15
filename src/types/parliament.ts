@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react";
+
 export interface IDuration {
   value: number;
   unit: "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" | "years";
@@ -7,7 +9,7 @@ export interface IActivity {
   _id?: string;
   title: string;
   count: number;
-  icon?: string; // e.g., "FileText" or "Users"
+  icon: LucideIcon | string; // e.g., Predefine: "FileText" or "Users"
   items: string[]; // list of sub-items (e.g., "Healthcare Reform Act," etc.)
   trend: string; // e.g., "+20% from last year"
 }
@@ -16,7 +18,7 @@ export interface IRecentActivity {
   _id?: string;
   date: Date; // e.g., 2024-02-01
   title: string;
-  type: string; // e.g. 'Committee', 'Plenary'
+  type: string; // e.g. Predefine: 'Committee', 'Plenary', 'Speech', 'Bill'
   duration: IDuration;
 }
 

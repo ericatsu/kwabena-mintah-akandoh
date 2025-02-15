@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Play, Calendar, Share2, Download } from 'lucide-react';
 
-const Media = () => {
+const Blog = () => {
     const newsItems = [
         {
             title: "Healthcare Reform Bill Presentation",
@@ -194,4 +194,4 @@ const Media = () => {
     );
 };
 
-export default Media;
+export default Blog;
