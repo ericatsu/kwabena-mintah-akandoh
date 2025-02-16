@@ -17,9 +17,10 @@ const Constituency = () => {
     const [searchTerm, setSearchTerm] = useState('')
 
     const districts = [
-        { name: 'Juaboso Central', population: '45,000', projects: 12 },
-        { name: 'Bonsu Nkwanta', population: '35,000', projects: 8 },
-        { name: 'Benchema', population: '30,000', projects: 10 }
+        { name: 'Asempaneye', population: '45,000', projects: 12 },
+        { name: 'Kofikrom-Proso', population: '35,000', projects: 8 },
+        { name: 'Benchema-Nkatieso', population: '30,000', projects: 10 },
+        { name: 'Boinzan', population: '20,000', projects: 10 }
     ]
 
     const developments = [
@@ -134,9 +135,9 @@ const Constituency = () => {
                         viewport={{ once: true }}
                         className="text-3xl font-bold text-center text-gray-800 mb-12"
                     >
-                        Districts Overview
+                        Constituency Overview
                     </motion.h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         {districts.map((district, index) => (
                             <motion.div
                                 key={index}

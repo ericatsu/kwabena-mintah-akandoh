@@ -1,61 +1,109 @@
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Play, Calendar, Share2, Download } from 'lucide-react';
+import { Search, ChevronDown, Clock, Bold, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Lorem } from '@/utils/Lorem';
 
-const Blog = () => {
-    const newsItems = [
-        {
-            title: "Healthcare Reform Bill Presentation",
-            date: "January 15, 2024",
-            source: "Ghana Parliamentary Press",
-            image: "https://cdn.ghanaweb.com/imagelib/pics/736/73681680.295.jpg",
-            excerpt: "Hon. Kwabena Mintah Akandoh presents comprehensive healthcare reform bill..."
-        },
-        {
-            title: "Address on Medical Infrastructure",
-            date: "February 1, 2024",
-            source: "Ghana Health News",
-            image: "https://cdn.ghanaweb.com/imagelib/pics/736/73681680.295.jpg",
-            excerpt: "Minister outlines plans for medical infrastructure development..."
-        }
-    ];
+interface BlogPost {
+    id: string;
+    title: string;
+    excerpt: string;
+    content: string;
+    category: string;
+    author: {
+        name: string;
+        avatar: string;
+    };
+    readTime: string;
+    image: string;
+    featured?: boolean;
+    dateAdded: string;
+}
 
-    const speeches = [
-        {
-            title: "Healthcare Policy Address",
-            date: "February 4, 2024",
-            duration: "25:30",
-            thumbnail: "https://cdn.ghanaweb.com/imagelib/pics/736/73681680.295.jpg",
-            views: "1.2K"
-        },
-        {
-            title: "Budget Debate Contribution",
-            date: "January 28, 2024",
-            duration: "18:45",
-            thumbnail: "https://cdn.ghanaweb.com/imagelib/pics/736/73681680.295.jpg",
-            views: "956"
-        }
-    ];
+const categories = [
+    'Health Policy',
+    'Healthcare Systems',
+    "Constituency",
+    "Parliament",
+    'Disease Prevention',
+    'Medical Research',
+    'Mental Health',
+    'Public Health',
+    'COVID-19 Updates',
+    'Government Initiatives',
+    'Public Engagement',
+    'Legislative News'
+];
 
-    const pressReleases = [
-        {
-            title: "Statement on Rural Healthcare Initiative",
-            date: "February 2, 2024",
-            type: "Press Release",
-            downloadUrl: "#"
+export const posts: BlogPost[] = [
+    {
+        id: 'healthcare-innovation',
+        title: 'Innovating Healthcare Delivery in Ghana',
+        excerpt: 'A look at how innovation in healthcare systems is transforming lives in Ghana.',
+        category: 'Healthcare Systems',
+        author: {
+            name: 'Hon. Kwabena Mintah Akandoh',
+            avatar: '/kma.jpg'
         },
-        {
-            title: "Response to Health Infrastructure Queries",
-            date: "January 25, 2024",
-            type: "Official Statement",
-            downloadUrl: "#"
-        }
-    ];
+        readTime: '7min read',
+        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
+        featured: true,
+        dateAdded: '2025-02-14T08:00:00Z',
+        content: Lorem
+    },
+    {
+        id: 'mental-health-awareness',
+        title: 'Mental Health in Ghana: Breaking the Stigma',
+        excerpt: 'The importance of mental health awareness in reducing stigma and increasing support.',
+        category: 'Mental Health',
+        author: {
+            name: 'Hon. Kwabena Mintah Akandoh',
+            avatar: '/kma.jpg'
+        },
+        readTime: '6min read',
+        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
+        dateAdded: '2025-02-14T09:00:00Z',
+        content: Lorem
+    },
+    {
+        id: 'covid-response',
+        title: 'Ghana’s Response to COVID-19: A Success Story',
+        excerpt: 'An overview of how Ghana has handled the COVID-19 pandemic, with successes and lessons.',
+        category: 'COVID-19 Updates',
+        author: {
+            name: 'Hon. Kwabena Mintah Akandoh',
+            avatar: '/kma.jpg'
+        },
+        readTime: '8min read',
+        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
+        dateAdded: '2025-02-15T10:00:00Z',
+        content: Lorem
+    },
+    {
+        id: 'health-policy',
+        title: 'The Role of Health Policy in Sustainable Development',
+        excerpt: 'Exploring the intersection of health policy and sustainable development goals in Ghana.',
+        category: 'Health Policy',
+        author: {
+            name: 'Hon. Kwabena Mintah Akandoh',
+            avatar: '/kma.jpg'
+        },
+        readTime: '5min read',
+        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
+        dateAdded: '2025-02-15T11:00:00Z',
+        content: Lorem
+    }
+    // Add more blog posts here...
+];
+
+const Blog: React.FC = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All Category');
+
+   
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-20">
-            {/* Hero Section */}
+        <div className="min-h-screen bg-gray-50 pt-20">
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -69,126 +117,169 @@ const Blog = () => {
                         animate={{ y: 0, opacity: 1 }}
                         className="space-y-6"
                     >
-                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight">Media Center</h1>
+                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                            The Media
+                        </h1>
                         <p className="text-xl text-emerald-100 max-w-3xl">
-                            Latest news, speeches, and press releases from Hon. Kwabena Mintah Akandoh
+                            Blog of Hon. Kwabena Mintah Akandoh
                         </p>
+                        <div className="flex gap-4">
+                            <div className="flex items-center gap-2 bg-emerald-800/50 rounded-full px-4 py-2">
+                                <Bold size={20} />
+                                <span>All Current</span>
+                            </div>
+                            <div className="flex items-center gap-2 bg-emerald-800/50 rounded-full px-4 py-2">
+                                <Heart size={20} />
+                                <span>Trusted</span>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </motion.section>
-
-            {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <Tabs defaultValue="news" className="w-full">
-                    <TabsList className="grid w-full grid-cols-3 mb-8">
-                        <TabsTrigger value="news">News & Articles</TabsTrigger>
-                        <TabsTrigger value="speeches">Speeches & Videos</TabsTrigger>
-                        <TabsTrigger value="press">Press Releases</TabsTrigger>
-                    </TabsList>
+                <div className="flex flex-col lg:flex-row gap-8">
+                    {/* Sidebar */}
+                    <div className="w-full lg:w-64 flex-shrink-0">
+                        <div className="bg-white rounded-2xl p-6 shadow-sm">
+                            <h2 className="text-lg font-semibold mb-4">Label</h2>
 
-                    <TabsContent value="news">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {newsItems.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                >
-                                    <Card className="overflow-hidden">
-                                        <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
-                                        <CardContent className="p-6">
-                                            <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                                                <Calendar size={16} />
-                                                {item.date}
-                                            </div>
-                                            <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
-                                            <p className="text-gray-600 mb-4">{item.excerpt}</p>
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm text-gray-500">{item.source}</span>
-                                                <button className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700">
-                                                    <Share2 size={16} />
-                                                    Share
-                                                </button>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
-                            ))}
+                            {/* Search */}
+                            <div className="relative mb-6">
+                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <input
+                                    type="text"
+                                    placeholder="Search article..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+
+                            {/* Filter */}
+                            <div className="mb-6">
+                                <h3 className="text-lg font-semibold mb-4">Filter</h3>
+                                <div className="relative">
+                                    <select
+                                        value={selectedCategory}
+                                        onChange={(e) => setSelectedCategory(e.target.value)}
+                                        className="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-full appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">Filter article...</option>
+                                    </select>
+                                    <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                </div>
+                            </div>
+
+                            {/* Categories */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-4">Browse By Categories</h3>
+                                <ul className="space-y-2">
+                                    {categories.map((category) => (
+                                        <motion.li
+                                            key={category}
+                                            whileHover={{ x: 4 }}
+                                            className={`cursor-pointer px-4 py-2 rounded-lg transition-colors ${selectedCategory === category
+                                                    ? 'bg-blue-50 text-blue-600'
+                                                    : 'text-gray-600 hover:bg-gray-50'
+                                                }`}
+                                            onClick={() => setSelectedCategory(category)}
+                                        >
+                                            {category}
+                                        </motion.li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                    </TabsContent>
+                    </div>
 
-                    <TabsContent value="speeches">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {speeches.map((speech, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                >
-                                    <Card>
-                                        <div className="relative">
-                                            <img src={speech.thumbnail} alt={speech.title} className="w-full h-48 object-cover" />
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-                                                <button className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                                                    <Play className="text-emerald-600 w-6 h-6" />
-                                                </button>
+                    {/* Main Content */}
+                    <div className="flex-1">
+                        {/* Featured Post */}
+                        {posts.filter(post => post.featured).map(post => (
+                            <motion.div
+                                key={post.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="mb-8"
+                            >
+                                <Link to={`/blog/${post.id}`}>
+                                    <div className="group relative rounded-2xl overflow-hidden">
+                                        <div className="absolute top-4 right-4 z-10">
+                                            <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                                                Featured
+                                            </span>
+                                        </div>
+                                        <img
+                                            src={post.image}
+                                            alt={post.title}
+                                            className="w-full h-[400px] object-cover transition-transform group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                        <div className="absolute bottom-0 p-6 text-white">
+                                            <h2 className="text-3xl font-bold mb-2">{post.title}</h2>
+                                            <p className="text-gray-200 mb-4">{post.excerpt}</p>
+                                            <div className="flex items-center gap-4">
+                                                <img
+                                                    src={post.author.avatar}
+                                                    alt={post.author.name}
+                                                    className="w-8 h-8 rounded-full"
+                                                />
+                                                <span>{post.author.name}</span>
+                                                <span>•</span>
+                                                <span>{post.readTime}</span>
                                             </div>
                                         </div>
-                                        <CardContent className="p-6">
-                                            <h3 className="text-xl font-semibold text-gray-800 mb-2">{speech.title}</h3>
-                                            <div className="flex items-center gap-4 text-sm text-gray-500">
-                                                <span className="flex items-center gap-1">
-                                                    <Calendar size={16} />
-                                                    {speech.date}
-                                                </span>
-                                                <span>{speech.duration}</span>
-                                                <span>{speech.views} views</span>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </TabsContent>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
 
-                    <TabsContent value="press">
-                        <div className="space-y-6">
-                            {pressReleases.map((release, index) => (
+                        {/* Regular Posts Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {posts.filter(post => !post.featured).map((post, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={post.id}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <Card>
-                                        <CardContent className="p-6">
-                                            <div className="flex items-center justify-between">
-                                                <div>
-                                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{release.title}</h3>
-                                                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                                                        <span className="flex items-center gap-1">
-                                                            <Calendar size={16} />
-                                                            {release.date}
-                                                        </span>
-                                                        <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full">
-                                                            {release.type}
-                                                        </span>
+                                    <Link to={`/blog/${post.id}`} state={{ post }}>
+                                        <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                                            <img
+                                                src={post.image}
+                                                alt={post.title}
+                                                className="w-full h-48 object-cover transition-transform group-hover:scale-105"
+                                            />
+                                            <div className="p-6">
+                                                <span className="text-sm text-blue-600 font-medium">
+                                                    {post.category}
+                                                </span>
+                                                <h3 className="text-xl font-semibold mt-2 mb-3 group-hover:text-blue-600 transition-colors">
+                                                    {post.title}
+                                                </h3>
+                                                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <img
+                                                            src={post.author.avatar}
+                                                            alt={post.author.name}
+                                                            className="w-8 h-8 rounded-full"
+                                                        />
+                                                        <span className="text-sm text-gray-600">{post.author.name}</span>
+                                                    </div>
+                                                    <div className="flex items-center text-sm text-gray-500">
+                                                        <Clock className="w-4 h-4 mr-1" />
+                                                        {post.readTime}
                                                     </div>
                                                 </div>
-                                                <button className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700">
-                                                    <Download size={16} />
-                                                    Download
-                                                </button>
                                             </div>
-                                        </CardContent>
-                                    </Card>
+                                        </div>
+                                    </Link>
                                 </motion.div>
                             ))}
                         </div>
-                    </TabsContent>
-                </Tabs>
+                    </div>
+                </div>
             </div>
         </div>
     );

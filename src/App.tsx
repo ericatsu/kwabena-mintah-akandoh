@@ -15,6 +15,7 @@ import { Dashboard } from './pages/admin/Dashboard'
 import { AboutAdmin } from './pages/admin/AboutAdmin'
 import ActivitiesAdmin from './pages/admin/ActivitiesAdmin'
 import Ministry from './pages/Ministry'
+import BlogDetail from './pages/BlogDetail'
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
             <Route path="/about" element={<Layout><About /></Layout>} />
             <Route path="/parliament" element={<Layout><Parliament /></Layout>} />
             <Route path="/constituency" element={<Layout><Constituency /></Layout>} />
-          <Route path="/ministry" element={<Layout><Ministry /></Layout>} />
+            <Route path="/ministry" element={<Layout><Ministry /></Layout>} />
             <Route path="/blog" element={<Layout><Blog /></Layout>} />
+            <Route path="/blog/:id" element={<Layout><BlogDetail /></Layout>} />
             <Route path="/contact" element={<Layout><Contact /></Layout>} />
 
             <Route path="/admin" element={<SignIn />} />

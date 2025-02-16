@@ -18,6 +18,8 @@ import {
     Search,
 } from 'lucide-react'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { posts } from './Blog';
 
 interface HealthInitiative {
     title: string;
@@ -60,27 +62,6 @@ const Ministry = () => {
             icon: Trophy,
             stat: "25+",
             subtext: "Programs launched"
-        }
-    ]
-
-    const news = [
-        {
-            title: "Launch of National Healthcare Digitization Program",
-            date: "February 10, 2025",
-            category: "Healthcare Technology",
-            link: "/blog/{slug}"
-        },
-        {
-            title: "New Medical Training Centers Opened in Greater Accra",
-            date: "February 8, 2025",
-            category: "Education",
-            link: "/blog/{slug}"
-        },
-        {
-            title: "Successful Completion of Nationwide Vaccination Campaign",
-            date: "February 5, 2025",
-            category: "Public Health",
-            link: "/blog/{slug}"
         }
     ]
 
@@ -340,7 +321,6 @@ const Ministry = () => {
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        {/* Latest News */}
                         <motion.div
                             initial={{ x: -20, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
@@ -350,27 +330,35 @@ const Ministry = () => {
                                 <Newspaper className="w-6 h-6 mr-2" />
                                 Latest News
                             </h2>
+
                             <div className="space-y-6">
-                                {news.map((item, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ x: -20, opacity: 0 }}
-                                        whileInView={{ x: 0, opacity: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="flex items-start space-x-4 border-b pb-6"
+                                {posts.map((post, index) => (
+                                    <Link
+                                        key={post.id}
+                                        to={`/blog/${post.id}`}
+                                        state={{ post }}
                                     >
-                                        <div className="flex-1">
-                                            <h3 className="text-lg font-medium text-gray-900 mb-2">{item.title}</h3>
-                                            <div className="flex items-center text-sm text-gray-500">
-                                                <Calendar className="w-4 h-4 mr-2" />
-                                                {item.date}
-                                                <span className="mx-2">•</span>
-                                                {item.category}
+                                        <motion.div
+                                            initial={{ x: -20, opacity: 0 }}
+                                            whileInView={{ x: 0, opacity: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className="flex items-start space-x-4 border-b pb-6"
+                                        >
+                                            <div className="flex-1">
+                                                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                                                    {post.title}
+                                                </h3>
+                                                <div className="flex items-center text-sm text-gray-500">
+                                                    <Calendar className="w-4 h-4 mr-2" />
+                                                    {post.dateAdded}
+                                                    <span className="mx-2">•</span>
+                                                    {post.category}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <ArrowRight className="w-5 h-5 text-emerald-600" />
-                                    </motion.div>
+                                            <ArrowRight className="w-5 h-5 text-emerald-600" />
+                                        </motion.div>
+                                    </Link>
                                 ))}
                             </div>
                         </motion.div>
@@ -406,7 +394,7 @@ const Ministry = () => {
                                         </div>
                                     </motion.div>
                                 ))}
-                            </div>
+                                </div>
                         </motion.div>
                     </div>
                 </div>
