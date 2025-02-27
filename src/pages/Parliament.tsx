@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FileText, MessageCircle, Users, TrendingUp, Award, Calendar, Clock, CheckCircle, XCircle, ThumbsUp, ThumbsDown, Mic, ChevronRight, BarChart2 } from 'lucide-react';
+import { FileText, MessageCircle, Users, TrendingUp, Award, Calendar, Clock, CheckCircle, ThumbsUp, ThumbsDown, Mic, ChevronRight, BarChart2 } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';

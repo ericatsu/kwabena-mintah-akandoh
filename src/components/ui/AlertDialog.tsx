@@ -7,7 +7,7 @@ interface AlertDialogProps {
     onClose: () => void;
 }
 
-export const AlertDialog = ({ type, message, onClose }: AlertDialogProps) => {
+export const AlertDialog = ({ type, message }: AlertDialogProps) => {
     return (
         <Alert className={`mb-4 ${type === 'success' ? 'bg-green-50' : 'bg-red-50'}`}>
             <div className="flex items-center">
