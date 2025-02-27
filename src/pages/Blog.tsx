@@ -42,7 +42,7 @@ export const posts: BlogPost[] = [
         excerpt: 'A look at how innovation in healthcare systems is transforming lives in Ghana.',
         category: 'Healthcare Systems',
         author: {
-            name: 'Hon. Kwabena Mintah Akandoh',
+            name: ' Kwabena Mintah Akandoh',
             avatar: '/kma.jpg'
         },
         readTime: '7min read',
@@ -57,7 +57,7 @@ export const posts: BlogPost[] = [
         excerpt: 'The importance of mental health awareness in reducing stigma and increasing support.',
         category: 'Mental Health',
         author: {
-            name: 'Hon. Kwabena Mintah Akandoh',
+            name: ' Kwabena Mintah Akandoh',
             avatar: '/kma.jpg'
         },
         readTime: '6min read',
@@ -71,7 +71,7 @@ export const posts: BlogPost[] = [
         excerpt: 'An overview of how Ghana has handled the COVID-19 pandemic, with successes and lessons.',
         category: 'COVID-19 Updates',
         author: {
-            name: 'Hon. Kwabena Mintah Akandoh',
+            name: ' Kwabena Mintah Akandoh',
             avatar: '/kma.jpg'
         },
         readTime: '8min read',
@@ -85,7 +85,7 @@ export const posts: BlogPost[] = [
         excerpt: 'Exploring the intersection of health policy and sustainable development goals in Ghana.',
         category: 'Health Policy',
         author: {
-            name: 'Hon. Kwabena Mintah Akandoh',
+            name: ' Kwabena Mintah Akandoh',
             avatar: '/kma.jpg'
         },
         readTime: '5min read',
@@ -100,7 +100,7 @@ const Blog: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All Category');
 
-   
+
 
     return (
         <div className="min-h-screen bg-gray-50 pt-20">
@@ -121,7 +121,7 @@ const Blog: React.FC = () => {
                             The Media
                         </h1>
                         <p className="text-xl text-emerald-100 max-w-3xl">
-                            Blog of Hon. Kwabena Mintah Akandoh
+                            Blog of  Kwabena Mintah Akandoh
                         </p>
                         <div className="flex gap-4">
                             <div className="flex items-center gap-2 bg-emerald-800/50 rounded-full px-4 py-2">
@@ -179,8 +179,8 @@ const Blog: React.FC = () => {
                                             key={category}
                                             whileHover={{ x: 4 }}
                                             className={`cursor-pointer px-4 py-2 rounded-lg transition-colors ${selectedCategory === category
-                                                    ? 'bg-blue-50 text-blue-600'
-                                                    : 'text-gray-600 hover:bg-gray-50'
+                                                ? 'bg-blue-50 text-blue-600'
+                                                : 'text-gray-600 hover:bg-gray-50'
                                                 }`}
                                             onClick={() => setSelectedCategory(category)}
                                         >

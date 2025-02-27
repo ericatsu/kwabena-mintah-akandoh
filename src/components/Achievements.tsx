@@ -4,12 +4,23 @@ import { ArrowRight, Award, CheckCircle, TrendingUp } from 'lucide-react';
 const Achievements = () => {
   const achievements = [
     {
-      title: "Healthcare Initiatives",
+      title: "Health Ministry",
       description: "Leading transformative healthcare programs and reforms",
       items: [
         "Led major healthcare reforms in Juaboso",
         "Implemented community health programs",
         "Advocated for improved medical facilities"
+      ],
+      icon: Award,
+      color: "emerald"
+    },
+    {
+      title: "Parliamentary Oversight",
+      description: "Driving policy and regulation for sustainable development",
+      items: [
+        "Led major land reform initiatives",
+        "Implemented sustainable resource management",
+        "Advocated for environmental protection"
       ],
       icon: Award,
       color: "emerald"
@@ -45,7 +56,7 @@ const Achievements = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-4">
           {achievements.map((category, index) => (
             <motion.div
               key={index}

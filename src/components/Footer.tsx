@@ -127,7 +127,7 @@ const Footer = () => {
                         viewport={{ once: true }}
                     >
                         <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                            About Hon. K. M. Akandoh
+                            About  K. M. Akandoh
                             <Heart className="w-4 h-4 text-emerald-500" />
                         </h4>
                         <p className="text-gray-400 mb-6 leading-relaxed">

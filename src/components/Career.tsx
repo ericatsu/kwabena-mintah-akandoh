@@ -11,15 +11,27 @@ const Career = () => {
       icon: Briefcase
     },
     {
+      year: "2015-2016",
+      title: "Deputy Minister for Lands and Natural Resources",
+      description: "Appointed as Deputy Minister for Lands and Natural Resources in Ghana's government, overseeing policy and regulation.",
+      icon: Briefcase
+    },
+    {
       year: "2013-Present",
       title: "Member of Parliament",
       description: "Serving the Juaboso Constituency with a focus on healthcare reform, infrastructure development, and community empowerment initiatives.",
       icon: TrendingUp
     },
     {
-      year: "2013-Present",
-      title: "Member of Parliament",
-      description: "Serving the Juaboso Constituency with a focus on healthcare reform, infrastructure development, and community empowerment initiatives.",
+      year: "2010-2012",
+      title: "Regional Youth Organizer",
+      description: "Regional Youth Organizer for the National Democratic Congress (NDC) in the Western Region of Ghana.",
+      icon: TrendingUp
+    },
+    {
+      year: "2006-2010",
+      title: "Deputy Regional Youth Organizer",
+      description: "Deputy Regional Youth Organizer for the National Democratic Congress (NDC) in the Western Region of Ghana.",
       icon: TrendingUp
     }
   ];

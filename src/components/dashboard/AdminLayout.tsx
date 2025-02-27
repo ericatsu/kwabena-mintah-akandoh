@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     LayoutDashboard,
     Settings,
     LogOut,
     PersonStanding,
     HeartHandshake,
-    Newspaper} from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+    Newspaper,
+    Image,
+    Share,
+    Dna
+} from 'lucide-react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
-    const [activePage, setActivePage] = useState('dashboard');
+    const location = useLocation();
 
     const handleLogout = () => {
         localStorage.removeItem('adminAuth');
@@ -22,6 +26,9 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         { icon: PersonStanding, label: 'About', path: '/admin/about' },
         { icon: HeartHandshake, label: 'Ministry', path: '/admin/ministry' },
         { icon: Newspaper, label: 'Blog', path: '/admin/blog' },
+        { icon: Image, label: 'Gallery', path: '/admin/gallery' },
+        { icon: Share, label: 'News Letter', path: '/admin/newsletter' },
+        { icon: Dna, label: 'Upcoming Events', path: '/admin/events' },
         { icon: Settings, label: 'Settings', path: '/admin/settings' },
     ];
 
@@ -33,16 +40,15 @@ export const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <nav className="mt-6">
                     {menuItems.map((item) => (
-                        <a
+                        <Link
                             key={item.path}
-                            href={item.path}
-                            className={`flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 ${activePage === item.label.toLowerCase() ? 'bg-emerald-50 text-emerald-600' : ''
+                            to={item.path}
+                            className={`flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 ${location.pathname === item.path ? 'bg-emerald-50 text-emerald-600' : ''
                                 }`}
-                            onClick={() => setActivePage(item.label.toLowerCase())}
                         >
                             <item.icon className="h-5 w-5 mr-3" />
                             {item.label}
-                        </a>
+                        </Link>
                     ))}
                     <button
                         onClick={handleLogout}

@@ -11,13 +11,13 @@ const Hero = () => {
     },
     {
       icon: <Award className="w-6 h-6" />,
-      label: 'Bills Sponsored',
-      value: '45+'
+      label: 'Parliamentary Statements',
+      value: '500+'
     },
     {
       icon: <Users className="w-6 h-6" />,
-      label: 'Constituents Served',
-      value: '120K+'
+      label: 'Constituents Projects',
+      value: '50+'
     }
   ];
 
@@ -43,7 +43,7 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
                 <img
                   src="/kma.jpg"
-                  alt="Hon. Kwabena Mintah Akandoh"
+                  alt=" Kwabena Mintah Akandoh"
                   className="w-full aspect-[3/4] object-cover"
                 />
               </div>
@@ -75,7 +75,7 @@ const Hero = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-                    Hon. Kwabena Mintah Akandoh
+                    Kwabena Mintah Akandoh
                   </h1>
                 </motion.div>
                 <motion.div

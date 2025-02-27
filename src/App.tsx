@@ -16,6 +16,9 @@ import { AboutAdmin } from './pages/admin/AboutAdmin'
 import ActivitiesAdmin from './pages/admin/ActivitiesAdmin'
 import Ministry from './pages/Ministry'
 import BlogDetail from './pages/BlogDetail'
+import GalleryAdmin from './pages/admin/GalleryAdmin'
+import NewsletterAdmin from './pages/admin/NewsLettterAdmin'
+import UpcomingEventAdmin from './pages/admin/UpcomingEventAdmin'
 
 function App() {
   return (
@@ -41,6 +44,9 @@ function App() {
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/about" element={<AboutAdmin />} />
                       <Route path="/activities" element={<ActivitiesAdmin />} />
+                      <Route path="/gallery" element={<GalleryAdmin />} />
+                      <Route path="/newsletter" element={<NewsletterAdmin />} />
+                      <Route path="/events" element={<UpcomingEventAdmin />} />
                       {/* Add more admin routes as needed */}
                     </Routes>
                   </AdminLayout>

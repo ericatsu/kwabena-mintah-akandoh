@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
     Award,
@@ -8,76 +8,93 @@ import {
     Heart,
     ChevronDown,
     Shield,
-    Globe,
-    LucideIcon
-} from 'lucide-react';
-import { API_BASE_URL } from '@/lib/utils';
-import { IMilestone, ICoreValue, IAchievement, IFAQ } from '@/types/about';
-import Loading from '@/utils/Loading';
-
-const iconMap: Record<string, LucideIcon> = {
-    Building,
-    Shield,
-    Award,
-    Target,
-    Users,
-    Heart,
     Globe
-};
+} from 'lucide-react';
 
 const About = () => {
     const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-    const [milestones, setMilestones] = useState<IMilestone[]>([]);
-    const [coreValues, setCoreValues] = useState<ICoreValue[]>([]);
-    const [achievements, setAchievements] = useState<IAchievement[]>([]);
-    const [faqs, setFaqs] = useState<IFAQ[]>([]);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [milestonesRes, coreValuesRes, achievementsRes, faqsRes] = await Promise.all([
-                    fetch(`${API_BASE_URL}/milestones`),
-                    fetch(`${API_BASE_URL}/core-values`),
-                    fetch(`${API_BASE_URL}/achievements`),
-                    fetch(`${API_BASE_URL}/faqs`)
-                ]);
+    const milestones = [
+        {
+            year: '2013',
+            title: 'Entered Parliament',
+            description: 'Elected as Member of Parliament for Juaboso Constituency',
+            icon: Building
+        },
+        {
+            year: '2021',
+            title: 'Health Committee',
+            description: 'Appointed as Ranking Member on the Parliamentary Health Committee',
+            icon: Shield
+        },
+        {
+            year: '2024',
+            title: 'Minister',
+            description: 'Nominated as Minister for Health',
+            icon: Award
+        }
+    ];
 
-                const milestonesData = await milestonesRes.json();
-                const coreValuesData = await coreValuesRes.json();
-                const achievementsData = await achievementsRes.json();
-                const faqsData = await faqsRes.json();
+    const coreValues = [
+        {
+            icon: Heart,
+            title: "Integrity",
+            description: "Maintaining the highest standards of ethical conduct and transparency in public service."
+        },
+        {
+            icon: Users,
+            title: "Community First",
+            description: "Prioritizing the needs and wellbeing of our constituents in every decision."
+        },
+        {
+            icon: Target,
+            title: "Excellence",
+            description: "Striving for exceptional results in healthcare improvements and community development."
+        },
+        {
+            icon: Globe,
+            title: "Innovation",
+            description: "Embracing modern solutions to address healthcare challenges effectively."
+        }
+    ];
 
-                setMilestones(milestonesData.map((milestone: any) => ({
-                    ...milestone,
-                    year: new Date(milestone.date).getFullYear().toString(),
-                    icon: iconMap[milestone.icon as keyof typeof iconMap] || Building
-                })));
+    const achievements = [
+        {
+            title: "Healthcare Initiatives",
+            stats: "15+",
+            description: "Major healthcare projects implemented"
+        },
+        {
+            title: "Community Development",
+            stats: "25+",
+            description: "Local development projects completed"
+        },
+        {
+            title: "Parliamentary Bills",
+            stats: "30+",
+            description: "Bills contributed to and sponsored"
+        },
+        {
+            title: "Constituent Support",
+            stats: "10K+",
+            description: "Constituents directly assisted"
+        }
+    ];
 
-                setCoreValues(coreValuesData.map((value: any) => ({
-                    ...value,
-                    icon: iconMap[value.icon as keyof typeof iconMap] || Heart
-                })));
-
-                setAchievements(achievementsData.map((achievement: any) => ({
-                    ...achievement,
-                    stats: `${achievement.stats}+`
-                })));
-
-                setFaqs(faqsData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    if (loading) {
-        return <Loading />;
-    }
+    const faqs = [
+        {
+            question: "What are your primary healthcare initiatives?",
+            answer: "Our healthcare initiatives focus on improving access to quality healthcare services, modernizing medical facilities, and implementing preventive healthcare programs across the constituency."
+        },
+        {
+            question: "How do you engage with the community?",
+            answer: "We maintain regular community forums, constituent outreach programs, and direct engagement through our constituency offices. We also leverage digital platforms for broader reach."
+        },
+        {
+            question: "What are your plans for healthcare development?",
+            answer: "Our strategic plan includes expanding medical facilities, training healthcare workers, and implementing innovative healthcare solutions to improve service delivery."
+        }
+    ];
 
     return (
         <div className="pt-20">
@@ -188,7 +205,7 @@ const About = () => {
                     </motion.div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {coreValues.map((value: ICoreValue, index: number) => (
+                        {coreValues.map((value, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
@@ -198,7 +215,7 @@ const About = () => {
                                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
                             >
                                 <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
-                                    {value.icon && <value.icon className="w-6 h-6 text-emerald-600" />}
+                                    <value.icon className="w-6 h-6 text-emerald-600" />
                                 </div>
                                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                                     {value.title}
@@ -228,20 +245,21 @@ const About = () => {
                     <div className="relative">
                         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-emerald-200" />
 
-                        {milestones.map((milestone: IMilestone, index: number) => (
+                        {milestones.map((milestone, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.2 }}
-                                className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                                className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'
+                                    } mb-12`}
                             >
                                 <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12' : 'pl-12'}`}>
                                     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                                         <div className="flex items-center gap-4 mb-4">
                                             <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                                                {milestone.icon && <milestone.icon className="w-6 h-6 text-emerald-600" />}
+                                                <milestone.icon className="w-6 h-6 text-emerald-600" />
                                             </div>
                                             <span className="text-2xl font-bold text-emerald-600">
                                                 {milestone.year}

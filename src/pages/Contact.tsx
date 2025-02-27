@@ -75,7 +75,7 @@ const Contact = () => {
                     >
                         <h1 className="text-5xl md:text-6xl font-bold tracking-tight">Contact Us</h1>
                         <p className="text-xl text-emerald-100 max-w-3xl">
-                            Get in touch with Hon. Kwabena Mintah Akandoh's office for constituency services and inquiries
+                            Get in touch with  Kwabena Mintah Akandoh's office for constituency services and inquiries
                         </p>
                     </motion.div>
                 </div>

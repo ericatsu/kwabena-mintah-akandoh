@@ -78,7 +78,7 @@ const Header = () => {
                 </div>
                 <div className="hidden sm:block">
                   <h1 className="text-2xl font-bold text-gray-900">
-                    Hon. K. M. Akandoh
+                    K. M. Akandoh
                   </h1>
                   <div className="flex items-center space-x-2 text-sm text-emerald-700">
                     <span>MP, Juaboso Constituency</span>
@@ -102,10 +102,10 @@ const Header = () => {
                     `}
                   >
                     <span>{item.name}</span>
-                   
+
                   </Link>
 
-                  
+
 
                   {location.pathname === item.path && (
                     <motion.div
