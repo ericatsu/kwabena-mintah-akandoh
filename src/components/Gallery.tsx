@@ -122,8 +122,7 @@ const Gallery = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Project Gallery</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Exploring our development initiatives and community projects across Juaboso Constituency</p>
+          <h2 className="text-4xl font-bold text-white mb-4">Gallery</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -148,7 +147,6 @@ const Gallery = () => {
                     {event.event}
                   </span>
                   <h3 className="text-xl font-semibold text-white">{event.title}</h3>
-                  <p className="text-gray-300 text-sm mt-1">{event.images.length} photos</p>
                 </div>
               </div>
             </motion.div>

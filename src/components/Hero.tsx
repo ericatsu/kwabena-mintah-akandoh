@@ -85,26 +85,26 @@ const Hero = () => {
                 >
                   <div className="flex flex-col space-y-2">
                     <h2 className="text-2xl text-emerald-700 font-semibold">
-                      Member of Parliament
+                      Minister for Health
                     </h2>
                     <h3 className="text-xl text-emerald-600">
-                      Minister for Health
+                     Member of Parliament - Juaboso Constituency
                     </h3>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Description */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg text-gray-600 leading-relaxed"
               >
-                A dedicated public servant with an unwavering commitment to improving healthcare
-                and fostering development in the Juaboso Constituency. Through strategic
-                leadership and community-focused initiatives, working tirelessly to create
-                lasting positive change in Ghana's healthcare system and beyond.
+                Kwabena Mintah Akandoh is a dedicated public servant, the MP for Juaboso since 2013, and an accomplished professional with backgrounds in mathematics,
+                law (LLB, LLM), and health systems management.
+                A former Deputy Minister of Lands and Natural Resources and Health Committee Ranking Member,
+                he has been vocal and at the forefront of ensuring quality healthcare for Ghanaians.
+                He is also the CEO of KAM Trading & Farms and one of Ghana’s leading rice farmers.
               </motion.p>
 
               {/* Stats Grid */}
