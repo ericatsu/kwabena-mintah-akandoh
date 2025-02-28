@@ -3,9 +3,9 @@ import Career from '../components/Career'
 import Gallery from '../components/Gallery'
 import Hero from '../components/Hero'
 import News from '../components/News'
-import StatsSection from '../components/StatsSection'
+//import StatsSection from '../components/StatsSection'
 import Contact from '../components/Contact'
-import InitiativesSection from '../components/InitiativesSection'
+//import InitiativesSection from '../components/InitiativesSection'
 
 function App() {
     return (
@@ -13,8 +13,8 @@ function App() {
             <Hero />
             <Career />
             <Achievements />
-            <StatsSection />
-            <InitiativesSection />
+            {/* <StatsSection />
+            <InitiativesSection /> */}
             <News />
             <Gallery />
             <Contact />

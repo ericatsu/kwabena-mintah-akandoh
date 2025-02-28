@@ -53,8 +53,8 @@ const Hero = () => {
                 transition={{ delay: 0.3 }}
                 className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-xl p-4 z-20"
               >
-                <p className="font-semibold text-emerald-800">Juaboso Constituency</p>
-                <p className="text-sm text-gray-600">Western North Region</p>
+                <p className="font-semibold text-emerald-800">Kwabena Mintah Akandoh</p>
+                {/* <p className="text-sm text-gray-600">Western North Region</p> */}
               </motion.div>
             </div>
           </motion.div>

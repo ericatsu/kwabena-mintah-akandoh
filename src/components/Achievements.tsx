@@ -7,9 +7,9 @@ const Achievements = () => {
       title: "Health Ministry",
       description: "Leading transformative healthcare programs and reforms",
       items: [
-        "Led major healthcare reforms in Juaboso",
-        "Implemented community health programs",
-        "Advocated for improved medical facilities"
+        "Placed in measures to tackle the outbreak of cholera and meningitis",
+        "Spearheading President Mahama's free primary health care and Ghana Medical Trust fund projects",
+        "Ensured goods consigned to the Health Ministry and stuck at the ports were cleared"
       ],
       icon: Award,
       color: "emerald"
@@ -18,9 +18,9 @@ const Achievements = () => {
       title: "Parliamentary Oversight",
       description: "Driving policy and regulation for sustainable development",
       items: [
-        "Led major land reform initiatives",
-        "Implemented sustainable resource management",
-        "Advocated for environmental protection"
+        "Advocacy for the uncapping of the NHIF",
+        "Advocacy for the re-opening of the Korle Bu Dialysis centre",
+        "Scrutiny over Agenda 111 projects"
       ],
       icon: Award,
       color: "emerald"
@@ -29,9 +29,9 @@ const Achievements = () => {
       title: "Constituency Development",
       description: "Driving sustainable community growth and improvement",
       items: [
-        "Infrastructure development projects",
-        "Educational support programs",
-        "Community engagement initiatives"
+        "Over 800 students given tertiary scholarships",
+        "10 CHPS compound constructed",
+        "Multipurpose dinning hall and assembly hall at Juaboso SHS"
       ],
       icon: TrendingUp,
       color: "blue"

@@ -36,23 +36,23 @@ const Footer = () => {
 
     const constituencyOffices = [
         {
-            name: 'Juaboso Main Office',
-            address: 'Assembly Building, Juaboso',
-            phone: '+233 XX XXX XXXX',
+            name: 'NDC Constituency Office',
+            address: 'NDC Assembly Building, Juaboso',
+            phone: '+233 300 665651',
             hours: 'Mon-Fri: 8am - 5pm'
         },
         {
             name: 'Parliament Office',
             address: 'Parliament House, Accra',
-            phone: '+233 XX XXX XXXX',
+            phone: '+233 300 665651',
             hours: 'Mon-Fri: 9am - 4pm'
         }
     ];
 
     const socialMedia = [
-        { icon: Facebook, link: '#', name: 'Facebook', color: '#1877f2' },
-        { icon: Twitter, link: '#', name: 'Twitter', color: '#1da1f2' },
-        { icon: Instagram, link: '#', name: 'Instagram', color: '#e4405f' },
+        { icon: Facebook, link: 'https://www.facebook.com/KMAkandoh/', name: 'Facebook', color: '#1877f2' },
+        { icon: Twitter, link: 'https://x.com/KMAkandoh', name: 'Twitter', color: '#1da1f2' },
+        { icon: Instagram, link: 'https://www.tiktok.com/@kmakandoh', name: 'TikTok', color: '#e4405f' },
         { icon: Youtube, link: '#', name: 'Youtube', color: '#ff0000' }
     ];
 

@@ -24,21 +24,21 @@ const Contact = () => {
             {
               icon: <Mail className="w-8 h-8" />,
               title: "Email",
-              content: "contact@akandoh.gov.gh",
+              content: "minister4@moh.gov.gh",
               action: "Write to us",
-              link: "mailto:contact@akandoh.gov.gh"
+              link: "mailto:minister4@moh.gov.gh"
             },
             {
               icon: <Phone className="w-8 h-8" />,
               title: "Phone",
-              content: "+233 XX XXX XXXX",
+              content: "+233 302 665651",
               action: "Call us",
-              link: "tel:+233XXXXXXXX"
+              link: "tel:+233302665651"
             },
             {
               icon: <MapPin className="w-8 h-8" />,
               title: "Office",
-              content: "Parliament House, Accra, Ghana",
+              content: "Ministry of Health, Ridge, Accra",
               action: "Visit us",
               link: "#"
             }
