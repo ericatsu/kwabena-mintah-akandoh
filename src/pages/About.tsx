@@ -1,39 +1,40 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-    Award,
-    Building,
+    // Award,
+    // Building,
     Target,
     Users,
     Heart,
     ChevronDown,
-    Shield,
+    // Shield,
     Globe
 } from 'lucide-react';
+import Career from '@/components/Career';
 
 const About = () => {
     const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-    const milestones = [
-        {
-            year: '2013',
-            title: 'Entered Parliament',
-            description: 'Elected as Member of Parliament for Juaboso Constituency',
-            icon: Building
-        },
-        {
-            year: '2021',
-            title: 'Health Committee',
-            description: 'Appointed as Ranking Member on the Parliamentary Health Committee',
-            icon: Shield
-        },
-        {
-            year: '2024',
-            title: 'Minister',
-            description: 'Nominated as Minister for Health',
-            icon: Award
-        }
-    ];
+    // const milestones = [
+    //     {
+    //         year: '2013',
+    //         title: 'Entered Parliament',
+    //         description: 'Elected as Member of Parliament for Juaboso Constituency',
+    //         icon: Building
+    //     },
+    //     {
+    //         year: '2021',
+    //         title: 'Health Committee',
+    //         description: 'Appointed as Ranking Member on the Parliamentary Health Committee',
+    //         icon: Shield
+    //     },
+    //     {
+    //         year: '2024',
+    //         title: 'Minister',
+    //         description: 'Nominated as Minister for Health',
+    //         icon: Award
+    //     }
+    // ];
 
     const coreValues = [
         {
@@ -230,55 +231,7 @@ const About = () => {
             </section>
 
             {/* Timeline Section */}
-            <section className="py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Political Journey</h2>
-                        <p className="text-xl text-gray-600">Key milestones in service to Ghana</p>
-                    </motion.div>
-
-                    <div className="relative">
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-emerald-200" />
-
-                        {milestones.map((milestone, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.2 }}
-                                className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'
-                                    } mb-12`}
-                            >
-                                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12' : 'pl-12'}`}>
-                                    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                                        <div className="flex items-center gap-4 mb-4">
-                                            <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                                                <milestone.icon className="w-6 h-6 text-emerald-600" />
-                                            </div>
-                                            <span className="text-2xl font-bold text-emerald-600">
-                                                {milestone.year}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                            {milestone.title}
-                                        </h3>
-                                        <p className="text-gray-600">
-                                            {milestone.description}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-emerald-500 rounded-full border-4 border-white" />
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <Career />
 
             {/* FAQ Section */}
             <section className="py-20 bg-gray-50">
