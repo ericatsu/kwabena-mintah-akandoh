@@ -1,3 +1,4 @@
+import { getPosts, initialPosts } from '@/types/blogPosts';
 import { AnimatePresence, motion } from 'framer-motion'
 import {
     Heart,
@@ -17,9 +18,8 @@ import {
     Pill,
     Search,
 } from 'lucide-react'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { posts } from './Blog';
 
 interface HealthInitiative {
     title: string;
@@ -33,6 +33,11 @@ interface HealthInitiative {
 const Ministry = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
+    const [posts, setPosts] = useState(initialPosts);
+    
+    useEffect(() => {
+        setPosts(getPosts().slice(0, 5));
+    }, []);
     
     const missions = [
         {

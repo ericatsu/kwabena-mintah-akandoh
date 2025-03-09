@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ChevronDown, Clock, Bold, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Lorem } from '@/utils/Lorem';
+import { transformToBlogPosts } from '@/utils/newsData';
 
 interface BlogPost {
     id: string;
@@ -21,86 +21,48 @@ interface BlogPost {
 }
 
 const categories = [
+    'News',
+    'Politics',
+    'Featured',
+    'Coronavirus',
     'Health Policy',
     'Healthcare Systems',
     "Constituency",
     "Parliament",
-    'Disease Prevention',
-    'Medical Research',
-    'Mental Health',
-    'Public Health',
-    'COVID-19 Updates',
-    'Government Initiatives',
-    'Public Engagement',
-    'Legislative News'
 ];
 
-export const posts: BlogPost[] = [
-    {
-        id: 'healthcare-innovation',
-        title: 'Innovating Healthcare Delivery in Ghana',
-        excerpt: 'A look at how innovation in healthcare systems is transforming lives in Ghana.',
-        category: 'Healthcare Systems',
-        author: {
-            name: ' Kwabena Mintah Akandoh',
-            avatar: '/kma.jpg'
-        },
-        readTime: '7min read',
-        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
-        featured: true,
-        dateAdded: '2025-02-14T08:00:00Z',
-        content: Lorem
-    },
-    {
-        id: 'mental-health-awareness',
-        title: 'Mental Health in Ghana: Breaking the Stigma',
-        excerpt: 'The importance of mental health awareness in reducing stigma and increasing support.',
-        category: 'Mental Health',
-        author: {
-            name: ' Kwabena Mintah Akandoh',
-            avatar: '/kma.jpg'
-        },
-        readTime: '6min read',
-        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
-        dateAdded: '2025-02-14T09:00:00Z',
-        content: Lorem
-    },
-    {
-        id: 'covid-response',
-        title: 'Ghana’s Response to COVID-19: A Success Story',
-        excerpt: 'An overview of how Ghana has handled the COVID-19 pandemic, with successes and lessons.',
-        category: 'COVID-19 Updates',
-        author: {
-            name: ' Kwabena Mintah Akandoh',
-            avatar: '/kma.jpg'
-        },
-        readTime: '8min read',
-        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
-        dateAdded: '2025-02-15T10:00:00Z',
-        content: Lorem
-    },
-    {
-        id: 'health-policy',
-        title: 'The Role of Health Policy in Sustainable Development',
-        excerpt: 'Exploring the intersection of health policy and sustainable development goals in Ghana.',
-        category: 'Health Policy',
-        author: {
-            name: ' Kwabena Mintah Akandoh',
-            avatar: '/kma.jpg'
-        },
-        readTime: '5min read',
-        image: 'https://codeskulptor-assets.commondatastorage.googleapis.com/assets_clock_background.png',
-        dateAdded: '2025-02-15T11:00:00Z',
-        content: Lorem
-    }
-    // Add more blog posts here...
-];
+// const categories = [
+//     'Health Policy',
+//     'Healthcare Systems',
+//     "Constituency",
+//     "Parliament",
+//     'Disease Prevention',
+//     'Medical Research',
+//     'Mental Health',
+//     'Public Health',
+//     'COVID-19 Updates',
+//     'Government Initiatives',
+//     'Public Engagement',
+//     'Legislative News'
+// ];
+
 
 const Blog: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All Category');
+    const [posts, setPosts] = useState<BlogPost[]>([]);
 
+    
+    useEffect(() => {
+        // Load posts from the transformed news data
+        setPosts(transformToBlogPosts());
+    }, []);
 
+    const filteredPosts = posts.filter(post => {
+        return (selectedCategory === 'All Category' || post.category === selectedCategory) &&
+            (post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()));
+    });
 
     return (
         <div className="min-h-screen bg-gray-50 pt-20">
@@ -195,14 +157,14 @@ const Blog: React.FC = () => {
                     {/* Main Content */}
                     <div className="flex-1">
                         {/* Featured Post */}
-                        {posts.filter(post => post.featured).map(post => (
+                        {filteredPosts.filter(post => post.featured).map(post => (
                             <motion.div
                                 key={post.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="mb-8"
                             >
-                                <Link to={`/blog/${post.id}`}>
+                                <Link to={`/blog/${post.id}`} state={{ post }}>
                                     <div className="group relative rounded-2xl overflow-hidden">
                                         <div className="absolute top-4 right-4 z-10">
                                             <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
@@ -236,7 +198,7 @@ const Blog: React.FC = () => {
 
                         {/* Regular Posts Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {posts.filter(post => !post.featured).map((post, index) => (
+                            {filteredPosts.filter(post => !post.featured).map((post, index) => (
                                 <motion.div
                                     key={post.id}
                                     initial={{ opacity: 0, y: 20 }}
