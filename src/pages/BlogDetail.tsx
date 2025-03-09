@@ -27,7 +27,10 @@ const BlogDetail: React.FC = () => {
     const formatContent = (content: string) => {
         if (!content) return null;
 
-        return content
+        // Remove HTML paragraph tags
+        const cleanedContent = content.replace(/<p>/g, '').replace(/<\/p>/g, '');
+
+        return cleanedContent
             .split('\n\n')
             .filter(paragraph => paragraph.trim().length > 0)
             .map((paragraph, index) => (

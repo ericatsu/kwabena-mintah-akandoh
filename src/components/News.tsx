@@ -2,22 +2,23 @@ import { motion } from 'framer-motion';
 import { Newspaper, Calendar, ChevronRight, Eye } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { transformToBlogPosts } from '@/utils/newsData';
 
+// Use the same BlogPost interface from Blog.tsx
 interface NewsItem {
-  id?: string;
-  date: string;
+  id: string;
   title: string;
   excerpt: string;
+  content: string;
   category: string;
-  readTime: string;
-  link: string;
-  content?: string;
-  image?: string;
-  author?: {
+  author: {
     name: string;
     avatar: string;
   };
-  dateAdded?: string;
+  readTime: string;
+  image: string;
+  featured?: boolean;
+  dateAdded: string;
 }
 
 const News = () => {
@@ -28,57 +29,60 @@ const News = () => {
   useEffect(() => {
     async function fetchNews() {
       try {
-        // Fetch news data from your JSON file
-        const response = await fetch('/kma-news.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch news');
-        }
+        // Use the same data transformation function as Blog.tsx
+        const allPosts = transformToBlogPosts();
 
-        const data = await response.json();
-
-        // Transform and process the data
-        const processedItems = data
-          .filter((item: any) => item.title && item.url) // Filter out incomplete items
-          .slice(0, 3) // Take only the first 3 items
-          .map((item: any, index: number) => ({
-            id: `news-${index}`,
-            date: item.date || new Date().toISOString(),
-            title: item.title,
-            excerpt: item.excerpt || "Read more about this important update...",
-            category: item.category || "News",
-            readTime: item.readTime || "3 min read",
-            link: `/blog/${item.url.split('/').pop() || index}`,
-            content: item.content || item.title,
-            image: item.imageUrl || 'https://3news.com/wp-content/uploads/2023/03/Akandoh-Mintah.png',
-            dateAdded: item.date || new Date().toISOString(),
-            author: {
-              name: 'Kwabena Mintah Akandoh',
-              avatar: '/kma.jpg'
-            }
-          }));
-
-        setNewsItems(processedItems);
+        // Take only the first 3 posts
+        setNewsItems(allPosts.slice(0, 3));
+        setError(null);
       } catch (err) {
-        console.error('Error fetching news:', err);
+        console.error('Error loading news data:', err);
         setError('Failed to load news items');
 
-        // Fallback data if fetch fails
+        // Fallback data if transform fails
         setNewsItems([
           {
             id: 'news-1',
-            date: '2024-02-15',
-            title: 'Health Minister Advocates for Increased Healthcare Funding',
-            excerpt: 'Speaking at the annual health budget review, the Minister emphasized the need for substantial investment in healthcare infrastructure.',
-            category: 'Healthcare',
-            readTime: '4 min read',
-            link: '/blog/healthcare-funding',
-            image: '/images/healthcare-funding.jpg',
+            title: 'Agenda 111: Government lacks funds to complete project – Mintah Akandoh',
+            excerpt: 'Hon. Kwabena Mintah Akandoh, the ranking member of the parliamentary health committee, has stated that the government lacks adequate funding to complete the Agenda 111 hospital projects.',
+            content: 'Hon. Kwabena Mintah Akandoh, the ranking member of the parliamentary health committee, has stated that the government lacks adequate funding to complete the Agenda 111 hospital projects. Speaking at a press conference, he revealed that the current administration has exhausted allocated funds with only a fraction of the work completed.',
+            category: 'News',
             author: {
               name: 'Kwabena Mintah Akandoh',
               avatar: '/kma.jpg'
-            }
+            },
+            readTime: '3 min read',
+            image: 'https://3news.com/wp-content/uploads/2024/01/Agenda-111.png',
+            dateAdded: '2024-05-27'
           },
-          // Add 2 more fallback items
+          {
+            id: 'news-2',
+            title: 'Health Committee Inspects Rural Healthcare Facilities',
+            excerpt: 'The parliamentary health committee conducted inspection visits to several rural healthcare facilities across the country.',
+            content: 'The parliamentary health committee conducted inspection visits to several rural healthcare facilities across the country. The committee, led by Ranking Member Kwabena Mintah Akandoh, assessed the state of infrastructure and medical supplies in these essential facilities serving remote communities.',
+            category: 'Healthcare',
+            author: {
+              name: 'Kwabena Mintah Akandoh',
+              avatar: '/kma.jpg'
+            },
+            readTime: '5 min read',
+            image: 'https://3news.com/wp-content/uploads/2023/03/Akandoh-Mintah.png',
+            dateAdded: '2024-05-20'
+          },
+          {
+            id: 'news-3',
+            title: 'MP Advocates for Increased Mental Health Funding',
+            excerpt: 'Hon. Kwabena Mintah Akandoh has called for significant increases in mental health funding during the latest budget discussions.',
+            content: 'Hon. Kwabena Mintah Akandoh has called for significant increases in mental health funding during the latest budget discussions. During his address to Parliament, he emphasized the growing mental health crisis and the urgent need for more resources to address this critical aspect of public health.',
+            category: 'Policy',
+            author: {
+              name: 'Kwabena Mintah Akandoh',
+              avatar: '/kma.jpg'
+            },
+            readTime: '4 min read',
+            image: 'https://3news.com/wp-content/uploads/2023/03/Akandoh-Mintah.png',
+            dateAdded: '2024-05-15'
+          }
         ]);
       } finally {
         setLoading(false);
@@ -124,23 +128,21 @@ const News = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {newsItems.map((item, index) => (
               <motion.article
-                key={item.id || index}
+                key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
                 className="group relative bg-white rounded-2xl shadow-xl overflow-hidden transform hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Optional image at the top */}
-                {item.image && (
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                )}
+                {/* Image */}
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
 
                 <div className="absolute top-4 right-4 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
                   {item.category}
@@ -149,7 +151,7 @@ const News = () => {
                 <div className="p-8">
                   <div className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
                     <Calendar className="w-4 h-4" />
-                    <time>{new Date(item.date).toLocaleDateString('en-GB', {
+                    <time>{new Date(item.dateAdded).toLocaleDateString('en-GB', {
                       day: 'numeric',
                       month: 'long',
                       year: 'numeric'
@@ -170,8 +172,8 @@ const News = () => {
                   </p>
 
                   <Link
-                    to={item.link}
-                    state={{ post: item }} // Pass the full item as post state
+                    to={`/blog/${item.id}`}
+                    state={{ post: item }} // Pass the post state exactly like Blog.tsx does
                     className="inline-flex items-center font-semibold text-green-600 group-hover:text-green-700"
                   >
                     <span className="border-b-2 border-green-600 group-hover:border-green-700">Read more</span>
